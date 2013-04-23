@@ -8,9 +8,11 @@
 #include "headings.h"
 #include "Channel.h"
 
-Channel::Channel() : number{-1}, offset_{0.0}, scale_{1.0}, enabled_{false}, waveform_(0), trigDelay_{0}{}
+Channel::Channel() { 
+	Channel(-1);
+}
 
-Channel::Channel( int number) : number{number}, offset_{0.0}, scale_{1.0}, enabled_{false}, waveform_(0), trigDelay_{0}{}
+Channel::Channel( int number) : number{number}, offset_{0.0}, scale_{1.0}, enabled_{false}, waveform_(0), trigDelay_{0}, streamID_{0} {}
 
 Channel::~Channel() {
 	// TODO Auto-generated destructor stub
@@ -177,4 +179,13 @@ int Channel::read_state_from_hdf5(H5::H5File & H5StateFile, const string & rootS
 	}
 */
 	return 0;
+}
+
+int Channel::set_streamID(const int & streamID) {
+	streamID_ = streamID;
+	return 0;
+}
+
+int Channel::get_streamID() {
+	return streamID_;
 }

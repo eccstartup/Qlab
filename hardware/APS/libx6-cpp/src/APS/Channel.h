@@ -17,6 +17,9 @@ public:
 	~Channel();
 	int number;
 
+	int set_streamID(const int &);
+	int get_streamID();
+
 	int set_offset(const float &);
 	float get_offset() const;
 	int set_scale(const float &);
@@ -37,6 +40,7 @@ public:
 	friend class BankBouncerThread;
 
 private:
+	int streamID_;
 	float offset_;
 	float scale_;
 	bool enabled_;
