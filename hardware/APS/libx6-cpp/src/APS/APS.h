@@ -71,9 +71,9 @@ public:
 
 
 	template <typename T>
-	int set_waveform(const int & dac, const vector<T> & data){
+	int set_waveform(const int & dac, const vector<T> & data, const int & streamID = 0){
 		channels_[dac].set_waveform(data);
-		return write_waveform(dac, channels_[dac].prep_waveform());
+		return write_waveform(dac, channels_[dac].prep_waveform(), streamID);
 	}
 
 	int set_run_mode(const int &, const RUN_MODE &);
@@ -156,7 +156,7 @@ private:
 */
 
 
-	int write_waveform(const int &, const vector<short> &);
+	int write_waveform(const int &, const vector<short> &, const int & streamID = 0);
 
 /*
 	int write_LL_data_IQ(const ULONG &, const size_t &, const size_t &, const bool &);

@@ -61,8 +61,8 @@ EXPORT double get_trigger_interval(int);
 
 EXPORT int set_miniLL_repeat(int, unsigned short);
 
-EXPORT int set_waveform_float(int, int, float*, int);
-EXPORT int set_waveform_int(int, int, short*, int);
+EXPORT int set_waveform_float(int, int, float*, int, int);
+EXPORT int set_waveform_int(int, int, short*, int, int);
 
 EXPORT int set_LL_data_IQ(int, int, int, unsigned short*, unsigned short*, unsigned short*, unsigned short*, unsigned short*);
 

@@ -92,13 +92,13 @@ double get_sampleRate(int deviceID){
 }
 
 //Load the waveform library as floats
-int set_waveform_float(int deviceID, int channelNum, float* data, int numPts){
-	return APSRack_.set_waveform(deviceID, channelNum, vector<float>(data, data+numPts));   
+int set_waveform_float(int deviceID, int channelNum, float* data, int numPts, int streamID){
+	return APSRack_.set_waveform(deviceID, channelNum, vector<float>(data, data+numPts), streamID);   
 }
 
 //Load the waveform library as int16
-int set_waveform_int(int deviceID, int channelNum, short* data, int numPts){
-	return APSRack_.set_waveform(deviceID, channelNum, vector<short>(data, data+numPts));  
+int set_waveform_int(int deviceID, int channelNum, short* data, int numPts, int streamID){
+	return APSRack_.set_waveform(deviceID, channelNum, vector<short>(data, data+numPts), streamID);  
 }
 
 int load_sequence_file(int deviceID, const char * seqFile){

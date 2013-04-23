@@ -24,6 +24,30 @@ classdef X6 < APS
         function val = disableTestGenerator(aps)
             val = aps.libraryCall('disable_test_generator');
         end
+
+        function loadWaveform(obj, ch, waveform, streamID)
+            %loadWaveform - loads a waveform vector into memory
+            % APS.loadWaveform(ch, waveform)
+            %   ch - channel (1-4)
+            %   waveform - int16 format waveform data (-8192, 8191) or
+            %       float data in the range (-1.0, 1.0)
+            assert((ch>0) && (ch<5), 'Oops! The channel must be in the range 1 through 4');
+            assert(length(waveform)<=obj.MAX_WAVFORM_LENGTH, 'Oops! Your waveform must be less than %d points', obj.MAX_WAVFORM_LENGTH+1)
+
+            if ~exist('streamID', 'var')
+                streamID = 0;
+            end
+
+            switch(class(waveform))
+                case 'int16'
+                    obj.libraryCall('set_waveform_int', ch-1, waveform, length(waveform), streamID);
+                case 'double'
+                    obj.libraryCall('set_waveform_float', ch-1, waveform, length(waveform), streamID);
+                otherwise
+                    error('Unhandled waveform data type');
+            end
+            obj.setEnabled(ch, 1);
+        end
         
     end
     

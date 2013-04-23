@@ -1270,13 +1270,13 @@ double APS::get_PLL_freq() const  {
 // 	return 0;
 // }
 
-int APS::write_waveform(const int & dac, const vector<short> & wfData) {
+int APS::write_waveform(const int & dac, const vector<short> & wfData, const int & streamID) {
 	/*Write waveform data to Driver memory for streaming to X6
 	 * dac = channel (0-1)
 	 * wfData = signed short waveform data
 	 */
 
-	 handle_.write_waveform(dac, wfData);
+	 handle_.write_waveform(dac, wfData, streamID);
 
 	return 0;
 }
