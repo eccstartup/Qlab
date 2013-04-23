@@ -38,6 +38,7 @@ X6_1000::X6_1000(unsigned int target) :
     for(int cnt = 0; cnt < get_num_channels(); cnt++) {
         activeChannels_[cnt] = false;
         chData_[cnt].clear(); // initalize vector
+        chStream_[cnt] = 0; // set default stream to 0;
     }
 
     // Use IPP performance memory functions.    
@@ -331,10 +332,11 @@ void X6_1000::set_defaults() {
     module_.Output().TestModeEnabled( false, wfType_);
 }
 
-X6_1000::ErrorCodes X6_1000::write_waveform(const int & channel, const vector<short> & wfData) {
+X6_1000::ErrorCodes X6_1000::write_waveform(const int & channel, const vector<short> & wfData, const int streamID) {
     if (channel >= get_num_channels()) return INVALID_CHANNEL;
     // copy data replacing existing data
     chData_[channel] = wfData;
+    chStream_[channel] = streamID;
     return SUCCESS;
 }
 
@@ -537,7 +539,7 @@ void  X6_1000::HandleDataRequired(Innovative::VitaPacketStreamDataEvent & Event)
 
             //  Init Vita Header
             VitaHeaderDatagram VitaH( VBuf );
-            VitaH.StreamId(streamID);
+            VitaH.StreamId(chStream_[ch]);
             VitaH.PacketCount(static_cast<int>(packet));
 
             //  Shove in the new VITA packet
