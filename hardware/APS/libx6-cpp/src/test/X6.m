@@ -141,7 +141,7 @@ classdef X6 < APS
             fprintf('disabling channel\n');
             x6.disableTestGenerator();
 
-            fprintf('Load Square Wavew\n');
+            fprintf('Load Square Wave\n');
             %Load a square wave
             wf = [1*ones([1,500]) -1*ones([1,500])];
             for ch = 1
