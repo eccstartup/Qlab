@@ -19,7 +19,7 @@ classdef X6 < APS
 
         function val = readRegister(aps, addr, offset)
             % get temprature using method one based on Malibu Objects
-            val = aps.libraryCall('write_register', addr, offset);
+            val = aps.libraryCall('read_register', addr, offset);
         end
 
         
