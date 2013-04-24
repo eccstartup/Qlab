@@ -1590,8 +1590,11 @@ void BankBouncerThread::run(){
 }
 */
 
-float APS::get_logic_temperature() {
-	return handle_.get_logic_temperature();
+float APS::get_logic_temperature(int method) {
+	if (method == 0)
+		return handle_.get_logic_temperature();
+	else
+		return handle_.get_logic_temperature_by_reg();
 }
 
 int APS::enable_test_generator(int mode, float frequency) {

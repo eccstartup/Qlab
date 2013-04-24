@@ -6,6 +6,8 @@
  */
 
 #include "headings.h"
+#include "X6_1000.h"
+#include "Channel.h"
 
 #ifndef APS_H_
 #define APS_H_
@@ -88,7 +90,7 @@ public:
 	int stop();
 
 
-	float get_logic_temperature();
+	float get_logic_temperature(int method);
 	int enable_test_generator(int,float);
 	int disable_test_generator();
 
