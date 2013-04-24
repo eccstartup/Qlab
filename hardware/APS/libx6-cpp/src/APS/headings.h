@@ -69,20 +69,6 @@ typedef vector<unsigned short> WordVec;
 //Load all the constants
 #include "constants.h"
 
-#include "X6_1000.h"
-#include <X6_1000M_Mb.h>
-#include "ModuleIO.h"
-
-//#include "FPGA.h"
-
-#include "LLBank.h"
-#include "Channel.h"
-#include "APS.h"
-#include "APSRack.h"
-#include "FPGA.h"
-
-
-
 //Helper function for hex formating with the 0x out front
 inline std::ios_base&
 myhex(std::ios_base& __base)

@@ -8,6 +8,7 @@
  */
 
 #include "headings.h"
+#include "ModuleIO.h"
 
 #ifndef FGPA_H_
 #define FGPA_H_
