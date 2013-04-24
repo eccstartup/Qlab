@@ -8,6 +8,7 @@
 #include <VitaPacketStream_Mb.h>
 #include <SoftwareTimer_Mb.h>
 #include <Application/TriggerManager_App.h>
+#include <HardwareRegister_Mb.h>
 #include "Thunker_Con.h"
 
 #ifndef X6_1000_H_
@@ -94,6 +95,7 @@ public:
 	ErrorCodes set_deviceID(unsigned int deviceID);
 
 	float get_logic_temperature();
+	float get_logic_temperature_by_reg(); // second test method to get temp using WB register
 
 	/** Set reference source and frequency
 	 *  \param ref EXTERNAL || INTERNAL
@@ -164,6 +166,13 @@ public:
     ErrorCodes 	 Start();
     ErrorCodes	 Stop();
 
+	ErrorCodes write_wishbone_register(uint32_t baseAddr, uint32_t offset, uint32_t data);
+    ErrorCodes write_wishbone_register(uint32_t offset, uint32_t data);
+
+    uint32_t read_wishbone_register(uint32_t baseAddr, uint32_t offset);
+    uint32_t read_wishbone_register(uint32_t offset);
+
+
     static void set_threading_enable(bool enable) {/*enableThreading_ = enable;*/}
 
     const int BusmasterSize = 4; /**< Rx & Tx BusMaster size in MB */
@@ -176,6 +185,12 @@ private:
 	Innovative::VitaPacketStream    stream_;
 	Innovative::SoftwareTimer       timer_;
 	Innovative::VeloBuffer       	outputPacket_;
+
+
+	// WishBone interface
+	// TODO: update wbAPS wishbone offset  
+	const unsigned int wbAPS_offset = 0xc00;   
+
 
 
 	unsigned int numBoards_;      /**< cached number of boards */
