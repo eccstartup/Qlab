@@ -90,10 +90,11 @@ EXPORT int read_bulk_state_file();
 EXPORT int raw_write(int, int, unsigned char*);
 EXPORT int raw_read(int, int);
 EXPORT int read_register(int, int, int);
+EXPORT int write_register(int, int, int, int);
 EXPORT int program_FPGA(int, char*, int, int);
 
 // II X6-1000M Test Interface
-EXPORT float get_logic_temperature(int);
+EXPORT float get_logic_temperature(int,int);
 EXPORT int enable_test_generator(int,int,float);
 EXPORT int disable_test_generator(int);
 

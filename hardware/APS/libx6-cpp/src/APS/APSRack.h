@@ -6,6 +6,7 @@
  */
 
 #include "headings.h"
+#include "APS.h"
 
 #ifndef APSRACK_H_
 #define APSRACK_H_
@@ -82,10 +83,13 @@ public:
 
 	int raw_write(int, int, UCHAR*);
 	int raw_read(int, FPGASELECT);
-	int read_register(int, FPGASELECT, int);
+	
+	int read_register(int, int, int);
+	int write_register(int, int, int, int);
+
 
 	// X6-1000M Test interface
-	float get_logic_temperature(int);
+	float get_logic_temperature(int, int);
 	int enable_test_generator(int, int, float);
 	int disable_test_generator(int);
 

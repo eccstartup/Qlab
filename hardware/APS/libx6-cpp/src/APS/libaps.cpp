@@ -7,6 +7,7 @@
  */
 
 #include "headings.h"
+#include "APSRack.h"
 #include "libaps.h"
 
 
@@ -233,17 +234,22 @@ int raw_read(int deviceID, int fpga){
 	return APSRack_.raw_read(deviceID, FPGASELECT(fpga));
 }
 
-int read_register(int deviceID, int fpga, int addr){
-	return APSRack_.read_register(deviceID, FPGASELECT(fpga), addr);
+int read_register(int deviceID, int wbAddr, int offset){
+	return APSRack_.read_register(deviceID, wbAddr, offset);
 }
+
+int write_register(int deviceID, int wbAddr, int offset, int data){
+	return APSRack_.write_register(deviceID, wbAddr, offset, data);
+}
+
 
 int program_FPGA(int deviceID, char* bitFile, int chipSelect, int expectedVersion) {
 	return APS_NOT_IMPLEMENTED_ERROR;
 	//return APSRack_.program_FPGA(deviceID, string(bitFile), FPGASELECT(chipSelect), expectedVersion);
 }
 
-float get_logic_temperature(int deviceID) {
-	return APSRack_.get_logic_temperature(deviceID);
+float get_logic_temperature(int deviceID, int method) {
+	return APSRack_.get_logic_temperature(deviceID, method);
 }
 
 int enable_test_generator(int deviceID, int mode, float frequency) {

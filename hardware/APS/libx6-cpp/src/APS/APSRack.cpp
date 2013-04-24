@@ -362,14 +362,19 @@ int APSRack::raw_read(int deviceID, FPGASELECT fpga) {
 	return int((dataBuffer[0] << 8) | dataBuffer[1]);
 }
 
-int APSRack::read_register(int deviceID, FPGASELECT fpga, int addr){
-	//return FPGA::read_FPGA(APSs_[deviceID].handle_, addr, fpga);
+int APSRack::read_register(int deviceID, int wbAddr, int offset){
+	return APSs_[deviceID].handle_.read_wishbone_register(wbAddr, offset);
 }
 
 
-float APSRack::get_logic_temperature(int deviceID) {
+int APSRack::write_register(int deviceID, int wbAddr, int offset, int data){
+	return APSs_[deviceID].handle_.write_wishbone_register(wbAddr, offset, data);
+}
+
+
+float APSRack::get_logic_temperature(int deviceID, int method) {
 	if (APSs_.size() > deviceID)
-		return APSs_[deviceID].get_logic_temperature();
+		return APSs_[deviceID].get_logic_temperature(method);
 	else {
 		return -1;
 	}
