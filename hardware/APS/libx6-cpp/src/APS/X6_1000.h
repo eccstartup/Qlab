@@ -155,7 +155,7 @@ public:
 	ErrorCodes enable_test_generator(FPGAWaveformType wfType, float frequencyMHz);
 	ErrorCodes disable_test_generator();
 	
-	ErrorCodes write_waveform(const int & channel, const vector<short> & wfData, const int streamID = 0);
+	ErrorCodes write_waveform(const int & channel, const vector<short> & wfData, const int streamID = -1);
 
 	unsigned int get_num_channels();
 

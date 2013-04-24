@@ -46,7 +46,7 @@ classdef X6 < APS
             assert(length(waveform)<=obj.MAX_WAVFORM_LENGTH, 'Oops! Your waveform must be less than %d points', obj.MAX_WAVFORM_LENGTH+1)
 
             if ~exist('streamID', 'var')
-                streamID = 0;
+                streamID = -1;
             end
 
             switch(class(waveform))

@@ -38,7 +38,7 @@ X6_1000::X6_1000(unsigned int target) :
     for(int cnt = 0; cnt < get_num_channels(); cnt++) {
         activeChannels_[cnt] = false;
         chData_[cnt].clear(); // initalize vector
-        chStream_[cnt] = 0; // set default stream to 0;
+        chStream_[cnt] = -1; // set default stream to -1;
     }
 
     // Use IPP performance memory functions.    
@@ -552,7 +552,7 @@ void  X6_1000::HandleDataRequired(Innovative::VitaPacketStreamDataEvent & Event)
 
             //  Init Vita Header
             VitaHeaderDatagram VitaH( VBuf );
-            VitaH.StreamId(chStream_[ch]);
+            VitaH.StreamId((chStream_[ch] >= 0 ) ? chStream_[ch] : streamID );
             VitaH.PacketCount(static_cast<int>(packet));
 
             //  Shove in the new VITA packet

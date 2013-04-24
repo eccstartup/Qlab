@@ -90,7 +90,7 @@ int main ()
 
   cout << "loading waveform" << endl;
 
-  set_waveform_int(0, 0, wf, wfs, 0);
+  set_waveform_int(0, 0, wf, wfs, -1);
 
   cout << "Running" << endl;
 
