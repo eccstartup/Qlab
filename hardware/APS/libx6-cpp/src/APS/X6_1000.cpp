@@ -209,7 +209,7 @@ float X6_1000::get_logic_temperature() {
 }
 
 float X6_1000::get_logic_temperature_by_reg() {
-    Innovative::AddressingSpace logicMemory = Innovative::LogicMemorySpace(module_);
+    Innovative::AddressingSpace & logicMemory = Innovative::LogicMemorySpace(module_);
     const unsigned int wbTemp_offset = 0x200;    
     const unsigned int tempControl_offset = 0;
     Innovative::WishboneBusSpace wbs = Innovative::WishboneBusSpace(logicMemory, wbTemp_offset);
@@ -634,7 +634,7 @@ void X6_1000::LogHandler(string handlerName) {
 
 X6_1000::ErrorCodes X6_1000::write_wishbone_register(uint32_t baseAddr, uint32_t offset, uint32_t data) {
      // Initialize WishboneAddress Space for APS specific firmware
-    Innovative::AddressingSpace logicMemory = Innovative::LogicMemorySpace(module_);
+    Innovative::AddressingSpace & logicMemory = Innovative::LogicMemorySpace(module_);
     Innovative::WishboneBusSpace WB_APS = Innovative::WishboneBusSpace(logicMemory, baseAddr);
     Innovative::Register reg = Register(WB_APS, offset);
     reg.Value(data);
@@ -646,7 +646,7 @@ X6_1000::ErrorCodes X6_1000::write_wishbone_register(uint32_t offset, uint32_t d
 }
 
 uint32_t X6_1000::read_wishbone_register(uint32_t baseAddr, uint32_t offset) {
-    Innovative::AddressingSpace logicMemory = Innovative::LogicMemorySpace(module_);
+    Innovative::AddressingSpace & logicMemory = Innovative::LogicMemorySpace(module_);
     Innovative::WishboneBusSpace WB_APS = Innovative::WishboneBusSpace(logicMemory, baseAddr);
     Innovative::Register reg = Register(WB_APS, offset);
     return reg.Value();
