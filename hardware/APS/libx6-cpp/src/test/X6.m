@@ -12,9 +12,20 @@ classdef X6 < APS
             obj.samplingRate = 1000;
         end
         
+        function val = writeRegister(aps, addr, offset, data)
+            % get temprature using method one based on Malibu Objects
+            val = aps.libraryCall('write_register', addr, offset, data);
+        end
+
+        function val = readRegister(aps, addr, offset)
+            % get temprature using method one based on Malibu Objects
+            val = aps.libraryCall('write_register', addr, offset);
+        end
+
         
         function val = getLogicTemperature(aps)
-            val = aps.libraryCall('get_logic_temperature');
+            % get temprature using method one based on Malibu Objects
+            val = aps.libraryCall('get_logic_temperature', 0);
         end
         
         function val = enableTestGenerator(aps,mode,rate)

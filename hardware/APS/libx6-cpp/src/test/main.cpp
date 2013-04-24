@@ -39,7 +39,8 @@ int main ()
 
   cout << "connect_by_ID(0) returned " << rc << endl;
 
-  cout << "current logic temperature = " << get_logic_temperature(0) << endl;
+  cout << "current logic temperature method 1 = " << get_logic_temperature(0, 0) << endl;
+  cout << "current logic temperature method 2 = " << get_logic_temperature(0, 1) << endl;
 
   cout << "Set sample rate " << endl;
 
